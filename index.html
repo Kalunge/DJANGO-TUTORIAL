@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <title>DJANGO TUTORIAL</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Set Up Your Development Environment</h1>
+      <p>python3 -m venv venv</p>
+      <h2>ACTIVATE YOUR DEVELOPMENT ENVIRONMENT</h2>
+      <p>source venv/bin/activate</p>
+      <h2>INSTALL DJANGO USING PIP</h2>
+      <p>pip install Django</p>
+      <h2>CREATE A DJANGO PROJECT</h2>
+      <p>django-admin startproject projectname</p>
+      <h2>EDIT PROJECT STRUCTURE</h2>
+      <p>$ mv projectname/manage.py ./</p>
+      <p>$ mv projectname/projectname/* projectname</p>
+      <p>$ rm -r projectname/projectname</p>
+      <h2>START THE SERVER</h2>
+      <p>python manage.py runserver</p
+
+      <h2>CREATE A DJANGO APPLICATION</h2>
+      <p>python manage.py startapp hello_world</p>
+      <h2>INSTALL YOUR APP IN SETTINGS.PY</h2>
+      <p>INSTALLED_APPS = [
+      'django.contrib.admin', <br>
+      'django.contrib.auth', <br>
+      'django.contrib.contenttypes', <br>
+      'django.contrib.sessions', <br>
+      'django.contrib.messages',<br>
+      'django.contrib.staticfiles', <br>
+      'hello_world', <br>
+  ]
+    </p>
+
+  <h2>CREATE A VIEW IN YOUR APP DIRECTORY</h2>
+  <p>from django.shortcuts import render <br>
+
+  def hello_world(request): <br>
+      return render(request, 'hello_world.html', {})</p>
+
+      <h2>create templates and html file in your app directory</h2>
+      <p>$ mkdir hello_world/templates/ <br>
+        $ touch hello_world/templates/hello_world.html</p>
+
+        <h2>MAP YOUR URL TO VISIT YOUR PAGE</h2>
+        <p>from django.contrib import admin
+  from django.urls import path, include
+
+  urlpatterns = [ <br>
+      path('admin/', admin.site.urls), <br>
+      path('', include('hello_world.urls')), <br>
+  ]</p>
+  <h2>CREATE URLS.PY IN YOUR APP</h2>
+  <p>touch hello_world/urls.py</p>
+  <p>from django.urls import path <br>
+from hello_world import views <br>
+
+urlpatterns = [ <br>
+    path('', views.hello_world, name='hello_world'), <br>
+]</p>
+<h2>runserver</h2>
+<p>python manage.py runserver</p
+<h1> <strong>ADD BOOTSTRAP TO YOUR APP</strong></h1>
+<p>$ mkdir personal_portfolio/templates/ <br>
+$ touch personal_portfolio/templates/base.html</p>
+<h2>add this code to your base.html </h2>
+<p>{% block page_content %}{% endblock %}</p>
+<h2>add this to you app vies html file</h2>
+<p>{% extends "base.html" %}
+{% block page_content %} <br>
+<p>Hello, World!</p> <br>
+{% endblock %}</p> <br>
+<h2>update templates in project directory</h2>
+<p>TEMPLATES = [ <br>
+    { <br>
+        "BACKEND": "django.template.backends.django.DjangoTemplates", <br>
+        <strong>"DIRS": ["personal_portfolio/templates/"],</strong> <br>
+        "APP_DIRS": True, <br>
+        "OPTIONS": { <br>
+            "context_processors": [ <br>
+                "django.template.context_processors.debug", <br>
+                "django.template.context_processors.request", <br>
+                "django.contrib.auth.context_processors.auth", br'
+                "django.contrib.messages.context_processors.messages", <br>
+            ] <br>
+        }, <br>
+    } <br>
+]</p>
+
+<h2>RUN SERVER</h2>
+<p>python manage.py runserver</p>
+    </div>
+  </body>
+</html>
